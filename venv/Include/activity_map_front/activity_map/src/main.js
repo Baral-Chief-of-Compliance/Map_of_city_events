@@ -4,7 +4,7 @@ import router from './router'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 
-// import './assets/main.css'
+import './assets/main.css'
 
 
 const httpLink = createHttpLink({

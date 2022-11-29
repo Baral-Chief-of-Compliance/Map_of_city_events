@@ -3,6 +3,9 @@ import { RouterLink, RouterView } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 import { computed, watch} from '@vue/runtime-core';
+import Header from './components/Header.vue';
+import NavBar from './components/NavBar.vue';
+
 
 const ALL_EVENTS_QUERY = gql`
   query{
@@ -37,6 +40,10 @@ watch(() => {
 </script>
 
 <template>
+  <Header />
+  <NavBar />
+
+
 
 
   <RouterView />
