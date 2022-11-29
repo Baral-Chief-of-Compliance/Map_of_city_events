@@ -1,5 +1,6 @@
 import { createApp, provide, h } from 'vue'
 import App from './App.vue'
+import { createMetaManager} from 'vue-meta'
 import router from './router'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 import { DefaultApolloClient } from '@vue/apollo-composable'
@@ -32,6 +33,7 @@ const app = createApp({
   })
 
 app.use(router)
+app.use(createMetaManager())
 
 
 app.mount('#app')

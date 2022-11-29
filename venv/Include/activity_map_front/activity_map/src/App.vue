@@ -37,9 +37,13 @@ watch(() => {
   console.log(events.value)
 })
 
+
 </script>
 
 <template>
+  <metainfo>
+    <template v-slot:title="{ content }">{{ content ? `${content} | SITE_NAME` : `SITE_NAME` }}</template>
+  </metainfo>
   <Header />
   <NavBar />
 
@@ -48,6 +52,8 @@ watch(() => {
 
   <RouterView />
 </template>
+
+
 
 <style scoped>
 
