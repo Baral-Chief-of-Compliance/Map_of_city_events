@@ -1,4 +1,5 @@
 import { createApp, provide, h } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import { createMetaManager} from 'vue-meta'
 import router from './router'
@@ -34,6 +35,7 @@ const app = createApp({
 
 app.use(router)
 app.use(createMetaManager())
+app.use(createPinia())
 
 
 app.mount('#app')

@@ -1,4 +1,7 @@
 <script setup>
+const props = defineProps({
+    event: Number
+})
 
 </script>
 
@@ -6,7 +9,7 @@
     <div class="container">
 
         <div class="links">
-            <router-link class="external-left" to="/">АФИША</router-link>
+            <router-link class="external-left" :to="{ name: 'poster'}">АФИША</router-link>
             <router-link class="inside" to="/categories">КАТЕГОРИИ</router-link>
             <router-link class="inside" to="/map">КАРТА</router-link>
             <router-link class="external-right" to="/archive">АРХИВ МЕРОПРИЯТИЙ</router-link>

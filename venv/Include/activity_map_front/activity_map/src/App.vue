@@ -2,11 +2,14 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
-import { computed, watch} from '@vue/runtime-core';
+import { computed, watchEffect} from '@vue/runtime-core';
 import Header from './components/Header.vue';
 import NavBar from './components/NavBar.vue';
-import  Footer from './components/Footer.vue'
+import  Footer from './components/Footer.vue';
+import { useEventStore } from './stores/EventStore';
 
+
+const eventStore = useEventStore()
 
 const ALL_EVENTS_QUERY = gql`
   query{
@@ -34,7 +37,9 @@ const ALL_EVENTS_QUERY = gql`
 const { result } = useQuery(ALL_EVENTS_QUERY)
 const events = computed(() => result.value?.allEvents ?? [])
 
-watch(() => {
+let a = 42
+
+watchEffect(() => {
   console.log(events.value)
 })
 
@@ -47,10 +52,6 @@ watch(() => {
   </metainfo>
   <Header />
   <NavBar />
-
-
-
-
   <RouterView />
   <Footer />
 </template>

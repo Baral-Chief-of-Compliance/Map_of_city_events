@@ -13,6 +13,7 @@ const router = createRouter({
       path: '/',
       name: 'poster',
       component: PosterView,
+      props: true,
       meta: {
         title: 'АФИША'
       }
