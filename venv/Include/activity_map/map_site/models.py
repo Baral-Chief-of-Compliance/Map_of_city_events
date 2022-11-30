@@ -20,6 +20,9 @@ class Event(models.Model):
     paid = models.BooleanField('Платное')
     price = models.CharField('Цена', max_length=10, blank=True)
     age_limit = models.CharField('Возрастное ограничение', max_length=5)
+    county = models.CharField('Округ', max_length=255)
+    category = models.CharField('Категория мероприятия', max_length=255)
+
     def save(self, *args, **kwargs):
         place = f"{self.street} {self.house} {self.frame}, {self.town}"
         location = Yandex(api_key='aaca613a-fe9d-47d2-95f3-cd1714593fff').geocode(place)
