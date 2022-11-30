@@ -17,7 +17,9 @@ class Event(models.Model):
     organizers = models.CharField('Организаторы', max_length=255, blank=True)
     latitude = models.CharField('Широта', max_length=255, null=True, blank=True)
     longitude = models.CharField('Долгота', max_length=255, null=True, blank=True)
-
+    paid = models.BooleanField('Платное')
+    price = models.CharField('Цена', max_length=10, blank=True)
+    age_limit = models.CharField('Возрастное ограничение', max_length=5)
     def save(self, *args, **kwargs):
         place = f"{self.street} {self.house} {self.frame}, {self.town}"
         location = Yandex(api_key='aaca613a-fe9d-47d2-95f3-cd1714593fff').geocode(place)
