@@ -30,20 +30,29 @@ const router = createRouter({
     {
       path: '/categories',
       name: 'categories',
-      component: CategoriesView
+      component: CategoriesView,
+      meta: {
+        title: 'КАТЕГОРИИ'
+      }
 
     },
 
     {
       path: '/map',
       name: 'map',
-      component: MapView
+      component: MapView,
+      meta: {
+        title: 'КАРТА'
+      }
     },
 
     {
       path: '/archive',
       name: 'archive',
-      component: ArchiveView
+      component: ArchiveView,
+      meta: {
+        title: 'АРХИВ МЕРОПРИЯТИЙ'
+      }
     }
   ]
 });

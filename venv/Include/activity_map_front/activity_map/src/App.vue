@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 import { computed, watch} from '@vue/runtime-core';
 import Header from './components/Header.vue';
 import NavBar from './components/NavBar.vue';
+import  Footer from './components/Footer.vue'
 
 
 const ALL_EVENTS_QUERY = gql`
@@ -51,6 +52,7 @@ watch(() => {
 
 
   <RouterView />
+  <Footer />
 </template>
 
 
