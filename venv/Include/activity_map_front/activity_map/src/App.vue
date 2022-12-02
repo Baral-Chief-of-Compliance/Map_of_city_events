@@ -37,7 +37,7 @@ const ALL_EVENTS_QUERY = gql`
 const { result } = useQuery(ALL_EVENTS_QUERY)
 const events = computed(() => result.value?.allEvents ?? [])
 
-let a = 42
+eventStore.addEvent(events)
 
 watchEffect(() => {
   console.log(events.value)

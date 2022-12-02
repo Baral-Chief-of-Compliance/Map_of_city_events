@@ -1,18 +1,14 @@
 <template>
     <h1>Афиша</h1>
-    {{ events.name }}
- 
+    {{ eventStore.events }}
+
 </template>
 
 <script setup>
+    import { useEventStore } from '../stores/EventStore'
 
-const props = defineProps({
-    events: {
-        type: Object,
-        required: true,
-        default: () => {}
-    }
-})
+    const eventStore = useEventStore()
+
 </script>
 
 <style>

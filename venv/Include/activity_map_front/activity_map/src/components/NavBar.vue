@@ -1,7 +1,4 @@
 <script setup>
-const props = defineProps({
-    event: Number
-})
 
 </script>
 
