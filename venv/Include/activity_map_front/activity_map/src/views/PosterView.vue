@@ -36,8 +36,8 @@ const events = computed(() => result.value?.allEvents ?? [])
 
 <template>
   <div class="content">
-    <div class="block" v-for="event in events" :key="event.id"> {{ event.name }} {{ event.eventimgSet[0].img }} </div>
-    <img v-for="event in events" :key="event.id" v-bind:src="require(`@/${event.eventimgSet[0].img}`)" />
+    <div class="block" v-for="event in events" v-bind:key="event.id"> {{ event.name }} {{ event.eventimgSet[0].img }} </div>
+    <img v-for="event in events" :key="event.id" :src="'http://127.0.0.1:8000/media/'+event.eventimgSet[0].img" />
     <img src="@/Мафия/29e4d32f752c6f700e41fe59123283f12e03c136.jpg" />
   </div>
 
