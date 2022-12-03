@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('/home/sparlex/Projects/WEB/Map_of_city_events/venv/Include/activity_map/media', import.meta.url))
     }
   }
 })
