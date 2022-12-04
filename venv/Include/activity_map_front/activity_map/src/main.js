@@ -5,6 +5,7 @@ import { createMetaManager} from 'vue-meta'
 import router from './router'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 import { DefaultApolloClient } from '@vue/apollo-composable'
+import ymapPlugin  from 'vue-yandex-maps'
 
 import './assets/main.css'
 
@@ -36,6 +37,7 @@ const app = createApp({
 app.use(router)
 app.use(createMetaManager())
 app.use(createPinia())
+app.use(ymapPlugin)
 
 
 app.mount('#app')
