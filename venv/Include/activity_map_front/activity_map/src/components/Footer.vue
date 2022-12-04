@@ -86,7 +86,6 @@
 
 <style scoped>
     .container {
-        position: fixed;
         left: 0;
         bottom: 0;
         width: 100%;
@@ -163,7 +162,6 @@
         padding-top: 7px;
         font-size: 14px;
         padding-left: 50px;
-        padding-right: 580px;
     }
 
     .title{
