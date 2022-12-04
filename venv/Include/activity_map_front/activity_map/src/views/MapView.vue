@@ -38,7 +38,19 @@ const events = computed(() => result.value?.allEvents ?? [])
     <div class="content">
 
         <div class="search-block">
-            
+            <div class="row">
+                <input v-model="search" placeholder="Я хочу найти"/>
+                <div>
+                    ФИЛЬТР "ГОРОД"
+                </div>
+            </div>
+            <div class="row">
+                <input v-model="search" type="date"/>
+                <div>
+                    КАТЕГОРИИ
+                </div>
+            </div>
+
         </div>
 
         <div class="map">
@@ -74,7 +86,15 @@ const events = computed(() => result.value?.allEvents ?? [])
 
 .search-block {
     width: 780px;
+}
 
+.row{
+    padding-top: 45px;
+    display: flex;
+    flex-direction: row;
+}
 
+.row input{
+    margin-right: 45px;
 }
 </style>
