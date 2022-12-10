@@ -2,6 +2,7 @@
 import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 import { computed } from '@vue/runtime-core';
+import Map from '../components/Map.vue'
 
 const ALL_EVENTS_QUERY = gql`
   query{
@@ -53,23 +54,28 @@ const events = computed(() => result.value?.allEvents ?? [])
 
         </div>
 
-        <div class="map">
-            <yandex-map  :coords='[68.970360, 33.074172]' :zoom="11">
+        <Map :events="events" />
+
+
+
+        <!-- <div class="map">
+            <yandex-map  :coords='[68.970360, 33.074172]' :zoom="11" >
                 <ymap-marker v-for="event in events" :key="event.id"
                     :marker-id="event.id" 
                     :coords="[event.latitude, event.longitude]" 
                     marker-type="placemark"
                     :balloon="{header: event.name}"
-                    :icon="{ color: 'red' }"
-                    
+                    :icon="{ color: 'red' }"                    
                     ></ymap-marker>
             </yandex-map>
-        </div>
+        </div> -->
 
     </div>
 
 
 </template>
+
+
 
 <style scoped>
 .content {
