@@ -76,7 +76,7 @@ export default {
 
 <style scoped>
 .ymap-container {
-    width: 780px;
+    width: 858px;
     height: 581px;
 }
 </style>
