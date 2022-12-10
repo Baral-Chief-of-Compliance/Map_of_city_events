@@ -3,6 +3,7 @@ import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 import { computed } from '@vue/runtime-core';
 import Map from '../components/Map.vue'
+import {ref} from 'vue'
 
 const ALL_EVENTS_QUERY = gql`
   query{
@@ -31,6 +32,7 @@ const ALL_EVENTS_QUERY = gql`
 
 const { result } = useQuery(ALL_EVENTS_QUERY)
 const events = computed(() => result.value?.allEvents ?? [])
+const show = ref(false)
 
 </script>
     
@@ -55,7 +57,8 @@ const events = computed(() => result.value?.allEvents ?? [])
             </div>
             <div class="row">
 
-                <div class="filter-down" id="city">
+
+                <div @click="show = !show" class="filter-down" id="city">
                     <div class="filter-down-content">
                         <div>
                             <img class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
@@ -65,6 +68,12 @@ const events = computed(() => result.value?.allEvents ?? [])
                         </div>
                     </div>
                 </div>
+
+                <Transition>
+                    <div v-show="show" >
+                        <input type="checkbox" value="Мурманск"><span>Мурманск</span>
+                    </div>
+                </Transition>
 
                 <div class="filter-down" id="county">
                     <div class="filter-down-content">
