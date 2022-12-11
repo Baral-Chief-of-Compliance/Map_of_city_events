@@ -32,7 +32,9 @@ const ALL_EVENTS_QUERY = gql`
 
 const { result } = useQuery(ALL_EVENTS_QUERY)
 const events = computed(() => result.value?.allEvents ?? [])
-const show = ref(false)
+const show_city = ref(false)
+const show_county = ref(false)
+const show_type = ref(false)
 
 </script>
     
@@ -58,10 +60,15 @@ const show = ref(false)
             <div class="row">
 
             <div>
-                <div @click="show = !show" class="filter-down" id="city">
+                <div @click="show_city = !show_city" class="filter-down" id="city">
                     <div class="filter-down-content">
                         <div>
-                            <img class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
+                            <Transition>
+                                <div>
+                                    <img  v-show="!show_city" class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
+                                    <img  v-show="show_city" class="arrow_down" src="../assets/map/Line_up.svg" width="20" height="12" alt="image format png" />
+                                </div>
+                            </Transition>
                         </div>
                         <div class="filter-down-name"> 
                             ГОРОД
@@ -70,7 +77,7 @@ const show = ref(false)
                 </div>
 
                 <Transition>
-                    <div class='varinats' v-show="show" >
+                    <div class='varinats' v-show="show_city" >
                         <div>
                             <label class="check">
                                 <input type="checkbox" class="check__input" value="Все города">
@@ -225,30 +232,157 @@ const show = ref(false)
             
             </div>
 
-                <div class="filter-down" id="county">
+            <div>
+                <div  @click="show_county = !show_county"  class="filter-down" id="county">
                     <div class="filter-down-content">
                         <div>
-                            <img class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
+                            <Transition>
+                                <div>
+                                    <img  v-show="!show_county" class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
+                                    <img  v-show="show_county" class="arrow_down" src="../assets/map/Line_up.svg" width="20" height="12" alt="image format png" />
+                                </div>
+                            </Transition>
+                            
                         </div>
                         <div class="filter-down-name"> 
                             ОКРУГ
                         </div>
                     </div>
                 </div>
+                <Transition>
+                    <div class='varinats_second' v-show="show_county" >
 
-                <div class="filter-down" id="type">
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <span class="check__box"></span>
+                                Выбрать все
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Первомайский">
+                                <span class="check__box"></span>
+                                Первомайский
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Октябрьский">
+                                <span class="check__box"></span>
+                                Октябрьский
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Ленинский">
+                                <span class="check__box"></span>
+                                Ленинский 
+                            </label>
+                        </div>
+
+                    </div>
+                </Transition>
+            
+            </div>
+            
+            <div>
+                <div  @click="show_type = !show_type" class="filter-down" id="type">
                     <div class="filter-down-content">
                         <div>
-                            <img class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
+                            <Transition>
+                                <div>
+                                    <img  v-show="!show_type" class="arrow_down" src="../assets/map/Line_down.svg" width="20" height="12" alt="image format png" />
+                                    <img  v-show="show_type" class="arrow_down" src="../assets/map/Line_up.svg" width="20" height="12" alt="image format png" />
+                                </div>
+                            </Transition>
                         </div>
                         <div class="filter-down-name"> 
                             ТИП
                         </div>
                     </div>
                 </div>
+
+                <Transition>
+                    <div class='varinats_second' v-show="show_type" >
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <span class="check__box"></span>
+                                Выбрать все
+                            </label>
+                        </div>
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Концерт">
+                                <span class="check__box"></span>
+                                Концерт
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Фестиваль">
+                                <span class="check__box"></span>
+                                Фестиваль
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Развлечение">
+                                <span class="check__box"></span>
+                                Развлечение
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Тренинг">
+                                <span class="check__box"></span>
+                                Тренинг
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Выставка">
+                                <span class="check__box"></span>
+                                Выставка
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Квест">
+                                <span class="check__box"></span>
+                                Квест
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Другое">
+                                <span class="check__box"></span>
+                                Другое
+                            </label>
+                        </div>
+
+                    </div>
+                </Transition>
+            
             </div>
+            
 
         </div>
+
+    </div>
 
         <Map :events="events" />
 
@@ -342,6 +476,11 @@ const show = ref(false)
     background-color: #02C0B8;
 }
 
+.filter-down:hover{
+    cursor: pointer;
+
+}
+
 .filter-down-name{
     color: #FFFFFF;
     font-weight: bold;
@@ -372,14 +511,38 @@ const show = ref(false)
 .varinats{
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
 
-/* .varinats div:hover{
+.varinats_second{
+    margin-top: 5px;
+    margin-left: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.varinats_second div{ 
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 160px;
+}
+
+.varinats_second div:hover{
     background-color: #CFF8F6;
 
-} */
+}
+.varinats div{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 160px;
+}
+.varinats div:hover{
+    background-color: #CFF8F6;
+
+}
 .check{
     padding-left: 1.2em;
+
 }
 
 .check__input{
@@ -404,6 +567,14 @@ const show = ref(false)
     background-image: url(../assets/checkbox/checkbox_in.svg);
 }
 
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 
 </style>
