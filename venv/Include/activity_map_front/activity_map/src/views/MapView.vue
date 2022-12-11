@@ -38,7 +38,7 @@ const show = ref(false)
     
 <template>
 
-    <div class="content">
+    <div  onmousedown="return false" class="content">
 
         <div class="search-block">
             <div class="row">
@@ -57,7 +57,7 @@ const show = ref(false)
             </div>
             <div class="row">
 
-
+            <div>
                 <div @click="show = !show" class="filter-down" id="city">
                     <div class="filter-down-content">
                         <div>
@@ -70,10 +70,160 @@ const show = ref(false)
                 </div>
 
                 <Transition>
-                    <div v-show="show" >
-                        <input type="checkbox" value="Мурманск"><span>Мурманск</span>
+                    <div class='varinats' v-show="show" >
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Все города">
+                                <span class="check__box"></span>
+                                Все города
+                            </label>
+                        </div>
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Мурманск">
+                                <span class="check__box"></span>
+                                Мурманск
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Мончегорск">
+                                <span class="check__box"></span>
+                                Мончегорск
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Полярные Зори">
+                                <span class="check__box"></span>
+                                Полярные Зори
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Оленегорск">
+                                <span class="check__box"></span>
+                                Оленегорск
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Кировск">
+                                <span class="check__box"></span>
+                                Кировск
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Апатиты">
+                                <span class="check__box"></span>
+                                Апатиты
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Гаджиево">
+                                <span class="check__box"></span>
+                                Гаджиево
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Заозёрск">
+                                <span class="check__box"></span>
+                                Заозёрск
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Кандалакша">
+                                <span class="check__box"></span>
+                                Кандалакша
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Кола">
+                                <span class="check__box"></span>
+                                Кола
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Островной">
+                                <span class="check__box"></span>
+                                Островной
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Полярный">
+                                <span class="check__box"></span>
+                                Полярный
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Североморск">
+                                <span class="check__box"></span>
+                                Североморск
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Снежногорск">
+                                <span class="check__box"></span>
+                                Снежногорск
+                            </label>
+                        </div>
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Заполярный">
+                                <span class="check__box"></span>
+                                Заполярный
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <label class="check">
+                                <input type="checkbox" class="check__input" value="Ковдор">
+                                <span class="check__box"></span>
+                                Ковдор
+                            </label>
+                        </div>
+
+                        
                     </div>
                 </Transition>
+            
+            </div>
 
                 <div class="filter-down" id="county">
                     <div class="filter-down-content">
@@ -218,4 +368,42 @@ const show = ref(false)
 #type{
     margin-left: 22px;
 }
+
+.varinats{
+    display: flex;
+    flex-direction: column;
+}
+
+/* .varinats div:hover{
+    background-color: #CFF8F6;
+
+} */
+.check{
+    padding-left: 1.2em;
+}
+
+.check__input{
+    position: absolute;
+    appearance: none;
+}
+.check:hover{
+    cursor: pointer;
+    background-color: #CFF8F6;
+    
+}
+
+.check__box{
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    background-image: url(../assets/checkbox/checkbox.svg);
+    margin-left: -1.2em;
+}
+
+.check__input:checked + .check__box{
+    background-image: url(../assets/checkbox/checkbox_in.svg);
+}
+
+
+
 </style>
