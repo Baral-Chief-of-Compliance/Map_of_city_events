@@ -1,1 +1,51 @@
-hello world
+{% extends 'map_site/base.html' %}
+
+{% block content %}
+Статистика
+<br>
+
+Любой тип: {{ any_types }}
+<br>
+Концерты: {{ concert_count }}
+<br>
+Фестивали: {{ festival_count }}
+<br>
+Развлечения: {{ entertainment_count }}
+<br>
+Тренинги: {{ training_count }}
+<br>
+Выставки: {{ exhibition_count }}
+<br>
+Квесты: {{ quest_count }}
+<br>
+Другое: {{ other_count }}
+<br>
+
+Любой возраст: {{ any_age_count }}
+<br>
+0+: {{ zero_count }}
+<br>
+6+: {{ six_count }}
+<br>
+12+: {{ twelve_count }}
+<br>
+14+: {{ fourteen_count }}
+<br>
+16+: {{ sixteen_count }}
+<br>
+18+: {{ eighteen_count }}
+<br>
+
+Любой район: {{ any_county }}
+<br>
+Первомайский: {{ pervomaisky_count }}
+<br>
+Октябрьский: {{ october_count }}
+<br>
+Ленинский: {{ lenin_counter }}
+<br>
+
+Платные: {{ paid_count }}
+<br>
+Бесплатные: {{ free_count }}
+{% endblock %}
