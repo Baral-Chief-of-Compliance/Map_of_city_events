@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Event
+from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 
+@staff_member_required
 def statistics(request):
     any_types = 0
     concert_count = 0
@@ -100,6 +102,7 @@ def statistics(request):
     return render(request, 'map_site/statistics.html', context)
 
 
+@staff_member_required
 def statistics_types(request):
 
     any_types = 0
@@ -145,6 +148,7 @@ def statistics_types(request):
     return render(request, 'map_site/statistics_types.html', context)
 
 
+@staff_member_required
 def statistics_age(request):
 
     any_age_count = 0
@@ -187,6 +191,7 @@ def statistics_age(request):
     return render(request, 'map_site/statistics_age.html', context)
 
 
+@staff_member_required
 def statistics_county(request):
 
     any_county = 0
@@ -215,6 +220,7 @@ def statistics_county(request):
     return render(request, 'map_site/statistics_county.html', context)
 
 
+@staff_member_required
 def statistics_paid(request):
 
     paid_count = 0
@@ -235,3 +241,9 @@ def statistics_paid(request):
     }
 
     return render(request, 'map_site/statistics_paid.html', context)
+
+
+@staff_member_required
+def statistics_date(request):
+
+    return render(request, 'map_site/statistics_date.html')
