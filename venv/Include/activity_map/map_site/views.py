@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Event
 from django.contrib.admin.views.decorators import staff_member_required
+from .forms import DateForm
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 @staff_member_required
@@ -245,5 +247,16 @@ def statistics_paid(request):
 
 @staff_member_required
 def statistics_date(request):
+
+    if request.method == 'POST':
+        form = DateForm(request.POST)
+
+        if form.is_valid():
+            print(form.cleaned_data['start_of_interval'])
+            print(form.cleaned_data['end_of_interval'])
+            return HttpResponseRedirect('/results/')
+
+    else:
+        form = DateForm()
 
     return render(request, 'map_site/statistics_date.html')
