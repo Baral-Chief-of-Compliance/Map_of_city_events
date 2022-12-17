@@ -254,9 +254,53 @@ def statistics_date(request):
         if form.is_valid():
             print(form.cleaned_data['start_of_interval'])
             print(form.cleaned_data['end_of_interval'])
-            return HttpResponseRedirect('/results/')
+            return HttpResponseRedirect(f'/statistics_date/{form.cleaned_data["start_of_interval"]}-{form.cleaned_data["end_of_interval"]}')
 
     else:
         form = DateForm()
 
     return render(request, 'map_site/statistics_date.html')
+
+
+@staff_member_required
+def statistics_interval(request, start_year, start_month, start_day, end_year, end_month,  end_day):
+
+    event_counter = 0
+
+    list_of_event = []
+
+    events = Event.objects.all()
+
+    date_of_start = f"{start_year}-{start_month}-{start_day}"
+    date_of_end = f"{end_year}-{end_month}={end_day}"
+
+    for event in events:
+
+        if (str(event.dt_of_start)[0:10] >= date_of_start) and (str(event.dt_of_end)[0:10]) <= date_of_end:
+            event_counter = event_counter + 1
+            list_of_event.append(event)
+
+        elif (str(event.dt_of_start)[0:10] <=  date_of_start) and (str(event.dt_of_end)[0:10]) >= date_of_end:
+            event_counter = event_counter + 1
+            list_of_event.append(event)
+
+        elif (str(event.dt_of_start)[0:10] >=  date_of_start and str(event.dt_of_start)[0:10] <= date_of_end) and (str(event.dt_of_end)[0:10]) >= date_of_end:
+            event_counter = event_counter + 1
+            list_of_event.append(event)
+
+        elif (str(event.dt_of_start)[0:10] <=  date_of_start) and ((str(event.dt_of_end)[0:10]) <= date_of_end and (str(event.dt_of_end)[0:10]) >= date_of_start):
+            event_counter = event_counter + 1
+            list_of_event.append(event)
+
+
+    context = {
+        "start_year": start_year,
+        "start_month": start_month,
+        "start_day": start_day,
+        "end_year": end_year,
+        "end_month": end_month,
+        "end_day": end_day,
+        "event_counter": event_counter,
+        "events": list_of_event
+    }
+    return render(request, 'map_site/statistics_interval.html', context)
