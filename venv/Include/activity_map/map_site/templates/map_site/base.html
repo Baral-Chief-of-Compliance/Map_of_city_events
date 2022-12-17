@@ -2,16 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel = "stylesheet" href = "{% static 'map_site/base.css' %}" type = "text/css">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <a href="{% url 'statistics_types' %}">По типам</a>
-        <a href="{% url 'statistics_age' %}">По возрасту</a>
-        <a href="{% url 'statistics_county' %}">По округу</a>
-        <a href="{% url 'statistics_paid' %}">Платное/Бесплатное</a>
-        <a href="{% url 'statistics_date' %}">По датам</a>
-    </header>
+    <div class="header">
+
+         <img class="logo" src="{% static 'map_site/logo.svg'%}" width="187" height="150" alt="image format png" />
+
+        <div class="label">
+            <span>Карта мероприятий | Мурманск | Статистика</span>
+        </div>
+
+    </div>
+
+    <div class="container-links">
+
+        <div class="links">
+            <a href="{% url 'statistics_types' %}">По типам</a>
+            <a href="{% url 'statistics_age' %}">По возрасту</a>
+            <a href="{% url 'statistics_county' %}">По округу</a>
+            <a href="{% url 'statistics_paid' %}">Платное/Бесплатное</a>
+            <a href="{% url 'statistics_date' %}">По датам</a>
+        </div>
+
+    </div>
+
+
+
       {% block content %}
       {% endblock %}
 </body>

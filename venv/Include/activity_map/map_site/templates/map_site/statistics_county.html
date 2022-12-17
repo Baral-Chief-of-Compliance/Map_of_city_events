@@ -1,12 +1,68 @@
 {% extends 'map_site/base.html' %}
 
 {% block content %}
-Любой район: {{ any_county }}
-<br>
-Первомайский: {{ pervomaisky_count }}
-<br>
-Октябрьский: {{ october_count }}
-<br>
-Ленинский: {{ lenin_counter }}
+<div class="content">
+
+    <div class="metric">
+
+        <div class="metric-variant">
+            Любой район: <span> {{ any_county }} </span>
+        </div>
+
+        <div class="metric-variant">
+            Первомайский: <span> {{ pervomaisky_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Октябрьский: <span> {{ october_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Ленинский: <span> {{ lenin_counter }}</span>
+        </div>
+
+    </div>
+
+    <div class="table-types">
+        <div class="column">
+            <div class="table-name">
+                Первомайский
+            </div>
+
+            {% for event in pervomaisky_list %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Октябрьский
+            </div>
+
+            {% for event in october_list %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Ленинский
+            </div>
+
+            {% for event in lenin_list %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+</div>
 
 {% endblock %}

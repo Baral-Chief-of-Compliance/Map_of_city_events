@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import Event, EventImg
 # Register your models here.
 
-
 class ImgInLine(admin.StackedInline):
     model = EventImg
     extra = 3

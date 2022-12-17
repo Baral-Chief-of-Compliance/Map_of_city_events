@@ -1,8 +1,46 @@
 {% extends 'map_site/base.html' %}
 
 {% block content %}
-Платные: {{ paid_count }}
-<br>
-Бесплатные: {{ free_count }}
+<div class="content">
 
+    <div class="metric">
+
+        <div class="metric-variant">
+            Платные: <span> {{ paid_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Бесплатные: <span> {{ free_count }}</span>
+        </div>
+
+    </div>
+
+    <div class="table-types">
+        <div class="column">
+            <div class="table-name">
+                Платные
+            </div>
+
+            {% for event in list_paid %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Бесплатные
+            </div>
+
+            {% for event in list_free %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
 {% endblock %}

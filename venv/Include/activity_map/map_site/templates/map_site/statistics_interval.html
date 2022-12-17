@@ -1,12 +1,24 @@
 {% extends 'map_site/base.html' %}
 
 {% block content %}
-За промежуток: {{ start_day }}.{{ start_month}}.{{ start_year }}-{{ end_day }}.{{ end_month }}.{{ end_year }}
-проведено: {{ event_counter }}
-<br>
-Список этих мероприятий:
-<br>
-{% for event in events%}
-    {{ event.name }}<br>
-{% endfor %}
+<div class="content">
+
+    <div class="title-for-result">
+        За промежуток: <b> {{ start_day }}.{{ start_month}}.{{ start_year }}-{{ end_day }}.{{ end_month }}.{{ end_year }} </b>
+    проведено: <b> {{ event_counter }}</b>
+    </div>
+
+    <div class="list-for-result">
+    <b>Список этих мероприятий:</b>
+
+
+    {% for event in events%}
+        <div class="element-for-result">
+        {{ event.name }}
+        </div>
+    {% endfor %}
+
+
+    </div>
+</div>
 {% endblock %}

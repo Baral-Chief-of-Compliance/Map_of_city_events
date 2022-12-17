@@ -1,13 +1,25 @@
 {% extends 'map_site/base.html' %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <label for="start_of_interval">Начало промежутка:</label>
-    <input id="start_of_interval" type="date" name="start_of_interval">
-    <label for="end_of_interval">Конец промежутка:</label>
-    <input id="end_of_interval" type="date" name="end_of_interval">
-    <input type="submit" valie="Статистика">
-</form>
+
+<div class="content">
+    <form method="post">
+        {% csrf_token %}
+        <div class="date-in">
+            <label for="start_of_interval">Начало промежутка:</label>
+            <input id="start_of_interval" type="date" name="start_of_interval">
+        </div>
+
+        <div class="date-in">
+            <label for="end_of_interval">Конец промежутка:</label>
+            <input id="end_of_interval" type="date" name="end_of_interval">
+        </div>
+
+        <button class="submit" type="submit" valie="Статистика">Статистика</button>
+
+
+    </form>
+</div>
+
 
 {% endblock %}

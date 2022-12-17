@@ -40,18 +40,31 @@ def statistics(request):
 
         if event.category == 'Коцерт':
             concert_count = concert_count + 1
+            list_concert.append(event)
+
         elif event.category == 'Фестиваль':
             festival_count = festival_count + 1
+            list_festival.append(event)
+
         elif event.category == 'Развлечение':
             entertainment_count = entertainment_count + 1
+            list_entertainment.append(event)
+
         elif event.category == 'Тренинг':
             training_count = training_count + 1
+            list_training.append(event)
+
         elif event.category == 'Выставка':
             exhibition_count = exhibition_count + 1
+            list_exhibition.append(event)
+
         elif event.category == 'Квест':
             quest_count = quest_count + 1
+            list_quest.append(event)
+
         elif event.category == 'Другое':
             other_count = other_count + 1
+            list_other.append(event)
 
         if  event.age_limit == '0+':
             zero_count = zero_count + 1
@@ -99,7 +112,15 @@ def statistics(request):
         "october_count": october_count,
         "lenin_counter": lenin_counter,
         "paid_count": paid_count,
-        "free_count": free_count
+        "free_count": free_count,
+
+        "list_concert": list_concert,
+        "list_festival": list_festival,
+        "list_entertainment": list_entertainment,
+        "list_training": list_training,
+        "list_exhibition": list_exhibition,
+        "list_quest": list_quest,
+        "list_other": list_other
     }
     return render(request, 'map_site/statistics.html', context)
 
@@ -116,6 +137,14 @@ def statistics_types(request):
     quest_count = 0
     other_count = 0
 
+    list_concert =[]
+    list_festival = []
+    list_entertainment = []
+    list_training = []
+    list_exhibition = []
+    list_quest = []
+    list_other = []
+
     events = Event.objects.all()
 
     for event in events:
@@ -123,18 +152,32 @@ def statistics_types(request):
 
         if event.category == 'Коцерт':
             concert_count = concert_count + 1
+            list_concert.append(event)
+
         elif event.category == 'Фестиваль':
             festival_count = festival_count + 1
+            list_festival.append(event)
+
         elif event.category == 'Развлечение':
             entertainment_count = entertainment_count + 1
+            list_entertainment.append(event)
+
         elif event.category == 'Тренинг':
             training_count = training_count + 1
+            list_training.append(event)
+
         elif event.category == 'Выставка':
             exhibition_count = exhibition_count + 1
+            list_exhibition.append(event)
+
         elif event.category == 'Квест':
             quest_count = quest_count + 1
+            list_quest.append(event)
+
         elif event.category == 'Другое':
             other_count = other_count + 1
+            list_other.append(event)
+
 
     context = {
         "any_types": any_types,
@@ -144,7 +187,15 @@ def statistics_types(request):
         "training_count": training_count,
         "exhibition_count": exhibition_count,
         "quest_count": quest_count,
-        "other_count": other_count
+        "other_count": other_count,
+
+        "list_concert": list_concert,
+        "list_festival": list_festival,
+        "list_entertainment": list_entertainment,
+        "list_training": list_training,
+        "list_exhibition": list_exhibition,
+        "list_quest": list_quest,
+        "list_other": list_other
     }
 
     return render(request, 'map_site/statistics_types.html', context)
@@ -161,6 +212,13 @@ def statistics_age(request):
     sixteen_count = 0
     eighteen_count = 0
 
+    list_zero =[]
+    list_six = []
+    list_twelve = []
+    list_fourteen = []
+    list_sixteen = []
+    list_eighteen = []
+
     events = Event.objects.all()
 
     for event in events:
@@ -169,16 +227,28 @@ def statistics_age(request):
 
         if  event.age_limit == '0+':
             zero_count = zero_count + 1
+            list_zero.append(event)
+
         elif event.age_limit == '6+':
             six_count = six_count + 1
+            list_six.append(event)
+
         elif event.age_limit == '12+':
             twelve_count = twelve_count + 1
+            list_twelve.append(event)
+
         elif event.age_limit == '14+':
             fourteen_count = fourteen_count + 1
+            list_fourteen.append(event)
+
         elif event.age_limit == '16+':
             sixteen_count = sixteen_count + 1
+            list_sixteen.append(event)
+
         elif event.age_limit == '18+':
             eighteen_count = eighteen_count + 1
+            list_eighteen.append(event)
+
 
     context = {
         "any_age_count": any_age_count,
@@ -187,7 +257,15 @@ def statistics_age(request):
         "twelve_count": twelve_count,
         "fourteen_count": fourteen_count,
         "sixteen_count": sixteen_count,
-        "eighteen_count": eighteen_count
+        "eighteen_count": eighteen_count,
+
+        "list_zero": list_zero,
+        "list_six": list_six,
+        "list_twelve": list_twelve,
+        "list_fourteen": list_fourteen,
+        "list_sixteen": list_sixteen,
+        "list_eighteen": list_eighteen
+
     }
 
     return render(request, 'map_site/statistics_age.html', context)
@@ -201,22 +279,35 @@ def statistics_county(request):
     october_count = 0
     lenin_counter = 0
 
+    pervomaisky_list = []
+    october_list = []
+    lenin_list = []
+
     events = Event.objects.all()
 
     for event in events:
 
         if event.county == 'Первомайский':
             pervomaisky_count = pervomaisky_count + 1
+            pervomaisky_list.append(event)
+
         elif event.county == 'Октябрьский':
             october_count = october_count + 1
+            october_list.append(event)
+
         elif event.county == 'Ленинский':
             lenin_counter = lenin_counter + 1
+            lenin_list.append(event)
 
     context = {
         "any_county": any_county,
         "pervomaisky_count": pervomaisky_count,
         "october_count": october_count,
-        "lenin_counter": lenin_counter
+        "lenin_counter": lenin_counter,
+
+        "pervomaisky_list": pervomaisky_list,
+        "october_list": october_list,
+        "lenin_list": lenin_list
     }
 
     return render(request, 'map_site/statistics_county.html', context)
@@ -228,18 +319,27 @@ def statistics_paid(request):
     paid_count = 0
     free_count = 0
 
+    list_paid = []
+    list_free = []
+
     events = Event.objects.all()
 
     for event in events:
 
         if event.paid:
             paid_count = paid_count + 1
+            list_paid.append(event)
+
         else:
             free_count = free_count + 1
+            list_free.append(event)
 
     context = {
         "paid_count": paid_count,
-        "free_count": free_count
+        "free_count": free_count,
+
+        "list_paid": list_paid,
+        "list_free": list_free
     }
 
     return render(request, 'map_site/statistics_paid.html', context)

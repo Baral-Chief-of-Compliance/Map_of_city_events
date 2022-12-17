@@ -1,18 +1,120 @@
 {% extends 'map_site/base.html' %}
 
 {% block content %}
-Любой возраст: {{ any_age_count }}
-<br>
-0+: {{ zero_count }}
-<br>
-6+: {{ six_count }}
-<br>
-12+: {{ twelve_count }}
-<br>
-14+: {{ fourteen_count }}
-<br>
-16+: {{ sixteen_count }}
-<br>
-18+: {{ eighteen_count }}
+<div class="content">
+
+    <div class="metric">
+
+        <div class="metric-variant">
+            Любой возраст: <span> {{ any_age_count }} </span>
+        </div>
+
+        <div class="metric-variant">
+            0+: <span> {{ zero_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            6+: <span> {{ six_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            12+: <span> {{ twelve_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            14+: <span> {{ fourteen_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            16+: <span> {{ sixteen_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            18+: <span> {{ eighteen_count }}</span>
+        </div>
+
+    </div>
+
+    <div class="table-types">
+        <div class="column">
+            <div class="table-name">
+                0+
+            </div>
+
+            {% for event in list_zero %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                6+
+            </div>
+
+            {% for event in list_six %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                12+
+            </div>
+
+            {% for event in list_twelve %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                14+
+            </div>
+
+            {% for event in list_fourteen %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                16+
+            </div>
+
+            {% for event in list_sixteen %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                18+
+            </div>
+
+            {% for event in list_eighteen %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+
+
+
+
+</div>
 
 {% endblock %}

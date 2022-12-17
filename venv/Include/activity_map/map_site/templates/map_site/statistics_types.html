@@ -1,20 +1,136 @@
 {% extends 'map_site/base.html' %}
 
 {% block content %}
-Любой тип: {{ any_types }}
-<br>
-Концерты: {{ concert_count }}
-<br>
-Фестивали: {{ festival_count }}
-<br>
-Развлечения: {{ entertainment_count }}
-<br>
-Тренинги: {{ training_count }}
-<br>
-Выставки: {{ exhibition_count }}
-<br>
-Квесты: {{ quest_count }}
-<br>
-Другое: {{ other_count }}
+<div class="content">
+
+    <div class="metric">
+
+        <div class="metric-variant">
+            Любой тип: <span> {{ any_types }} </span>
+        </div>
+
+        <div class="metric-variant">
+            Концерты: <span> {{ concert_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Фестивали: <span> {{ festival_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Развлечения: <span> {{ entertainment_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Тренинги: <span> {{ training_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Выставки: <span> {{ exhibition_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Квесты: <span> {{ quest_count }}</span>
+        </div>
+
+        <div class="metric-variant">
+            Другое: <span> {{ other_count }}</span>
+        </div>
+
+    </div>
+
+    <div class="table-types">
+        <div class="column">
+            <div class="table-name">
+                Концерт
+            </div>
+
+            {% for event in list_concert %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Фестиваль
+            </div>
+
+            {% for event in list_festival %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Развлечения
+            </div>
+
+            {% for event in list_entertainment %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Тренинги
+            </div>
+
+            {% for event in list_training %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Выставки
+            </div>
+
+            {% for event in list_exhibition %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Квесты
+            </div>
+
+            {% for event in list_quest %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <div class="table-name">
+                Другое
+            </div>
+
+            {% for event in list_other %}
+            <div>
+                {{ event.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
 
 {% endblock %}
