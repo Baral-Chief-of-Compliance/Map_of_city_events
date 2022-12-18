@@ -13,7 +13,8 @@
                 :coords="center_coords"
                 :zoom="zoom"
                 :cluster-options="clusterOptions"
-            >
+            >   
+            
                 <ymap-marker v-for="event in events" :key="event.id" 
                 :marker-id="event.id"
                 :coords="[event.latitude, event.longitude]"

@@ -1,5 +1,6 @@
 from django.conf import settings
 from graphene_django import DjangoObjectType
+from graphene_django import DjangoListField
 import graphene
 
 from . import models
@@ -22,8 +23,7 @@ class Query(graphene.ObjectType):
 
     def resolve_all_events(root, info, **kwargs):
         return (
-            models.Event.objects.all()
+            models.Event.objects.filter(dt_of_start__month='05')
         )
-
 
 schema = graphene.Schema(query=Query)

@@ -21,6 +21,11 @@ const ALL_EVENTS_QUERY = gql`
       latitude
       longitude
       town
+      paid
+      price
+      ageLimit
+      county
+      category
       eventimgSet{
         img
       }
@@ -36,11 +41,19 @@ const show_city = ref(false)
 const show_county = ref(false)
 const show_type = ref(false)
 
+
+function format_date(date) {
+    let arr = date.slice(0, 10).split('-')
+    let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
+
+    return new_date
+}
+
 </script>
     
 <template>
 
-    <div  onmousedown="return false" class="content">
+    <div  onmousedown="return true" class="content">
 
         <div class="search-block">
             <div class="row">
@@ -381,6 +394,18 @@ const show_type = ref(false)
             
 
         </div>
+        <div class ='row-results'>
+            <div class="block" v-for="event in events" v-bind:key="event.id">
+                <img  class="img-event" v-show="event.name != 'Фестиваль водных видов спорта'" :key="event.id"
+                :src="'http://127.0.0.1:8000/media/' + event.eventimgSet[0].img" />
+
+                <div v-if="event.name != 'Фестиваль водных видов спорта'" class="info">
+                    <div class="title">{{ event.name }}</div>
+                    <div class="date">{{ format_date(event.dtOfStart) }}</div>
+                    <div class="adress">{{ event.street }} {{ event.house }} {{ event.frame }}</div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -576,5 +601,49 @@ const show_type = ref(false)
 .v-leave-to {
   opacity: 0;
 }
+
+.img-event{
+    width: 300px;
+    height: 150px;
+    object-fit: cover;
+	object-position: 50% 50%;
+}
+
+.block{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow:
+        6px 6px 6px -1px #e9e9e9,
+        -6px 6px 6px -1px #e9e9e9;
+    margin-right: 100px;
+
+}
+
+.info{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.title{
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.date{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.adress{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+
 
 </style>

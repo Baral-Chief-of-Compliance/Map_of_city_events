@@ -92,6 +92,7 @@
         background-color: #696969;
         color: white;
         text-align: center;
+        /* position: absolute; */
     }
 
     .copytight {
