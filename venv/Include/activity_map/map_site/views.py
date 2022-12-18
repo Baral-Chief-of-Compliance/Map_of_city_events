@@ -287,6 +287,8 @@ def statistics_county(request):
 
     for event in events:
 
+        any_county = any_county + 1
+
         if event.county == 'Первомайский':
             pervomaisky_count = pervomaisky_count + 1
             pervomaisky_list.append(event)
