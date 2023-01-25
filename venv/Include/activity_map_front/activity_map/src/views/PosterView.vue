@@ -32,10 +32,10 @@ const ALL_EVENTS_QUERY = gql`
 const { result } = useQuery(ALL_EVENTS_QUERY)
 const events = computed(() => result.value?.allEvents ?? [])
 
-function format_date(date){
-  let arr = date.slice(0,10).split('-')
+function format_date(date) {
+  let arr = date.slice(0, 10).split('-')
   let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
-  
+
   return new_date
 }
 
@@ -43,12 +43,12 @@ function format_date(date){
 
 <template>
   <div class="content">
-    <div class="block" v-for="event in events" v-bind:key="event.id"> 
+    <div class="block" v-for="event in events" v-bind:key="event.id">
       <div class="inf">
-        <div class="title" > {{ event.name }}  </div>
+        <div class="title"> {{ event.name }} </div>
         <div class="date"> {{ format_date(event.dtOfStart) }}</div>
       </div>
-      <img :key="event.id" :src="'http://127.0.0.1:8000/media/'+event.eventimgSet[0].img" />
+      <img :key="event.id" :src="'http://127.0.0.1:8000/media/' + event.eventimgSet[0].img" />
     </div>
 
     <!-- <img v-for="event in events" :key="event.id" :src="'http://127.0.0.1:8000/media/'+event.eventimgSet[0].img" /> -->
@@ -66,7 +66,7 @@ function format_date(date){
   /* margin-right: 100px; */
   display: flex;
   flex-direction: row;
-  overflow:hidden;
+  overflow: hidden;
   flex-wrap: wrap;
 }
 
@@ -80,24 +80,24 @@ function format_date(date){
 
 }
 
-.title{
+.title {
   padding-top: 86px;
   text-shadow: 5px 4px 4px rgba(0, 0, 0, 0.75);
 }
 
-.date{
+.date {
   padding-top: 13px;
   text-shadow: 5px 4px 4px rgba(0, 0, 0, 0.75);
   padding-bottom: 74px;
 }
 
-.block img{
+.block img {
   width: 400px;
   height: 250px;
 
 }
 
-.inf{
+.inf {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
