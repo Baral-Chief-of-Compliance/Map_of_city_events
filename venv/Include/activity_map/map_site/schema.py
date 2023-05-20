@@ -23,7 +23,7 @@ class Query(graphene.ObjectType):
 
     def resolve_all_events(root, info, **kwargs):
         return (
-            models.Event.objects.filter(dt_of_start__month='05')
+            models.Event.objects.filter()
         )
 
 schema = graphene.Schema(query=Query)

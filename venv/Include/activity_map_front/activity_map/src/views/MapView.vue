@@ -49,6 +49,7 @@ function format_date(date) {
     return new_date
 }
 
+
 </script>
     
 <template>
@@ -93,14 +94,14 @@ function format_date(date) {
                     <div class='varinats' v-show="show_city" >
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Все города">
+                                <input type="checkbox" class="check__input" value="Все города" v-model="town_list">
                                 <span class="check__box"></span>
                                 Все города
                             </label>
                         </div>
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Мурманск">
+                                <input type="checkbox" class="check__input" value="Мурманск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Мурманск
                             </label>
@@ -109,7 +110,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Мончегорск">
+                                <input type="checkbox" class="check__input" value="Мончегорск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Мончегорск
                             </label>
@@ -118,7 +119,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Полярные Зори">
+                                <input type="checkbox" class="check__input" value="Полярные Зори" v-model="town_list">
                                 <span class="check__box"></span>
                                 Полярные Зори
                             </label>
@@ -127,7 +128,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Оленегорск">
+                                <input type="checkbox" class="check__input" value="Оленегорск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Оленегорск
                             </label>
@@ -136,7 +137,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Кировск">
+                                <input type="checkbox" class="check__input" value="Кировск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Кировск
                             </label>
@@ -145,7 +146,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Апатиты">
+                                <input type="checkbox" class="check__input" value="Апатиты" v-model="town_list">
                                 <span class="check__box"></span>
                                 Апатиты
                             </label>
@@ -154,7 +155,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Гаджиево">
+                                <input type="checkbox" class="check__input" value="Гаджиево" v-model="town_list">
                                 <span class="check__box"></span>
                                 Гаджиево
                             </label>
@@ -163,7 +164,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Заозёрск">
+                                <input type="checkbox" class="check__input" value="Заозёрск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Заозёрск
                             </label>
@@ -172,7 +173,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Кандалакша">
+                                <input type="checkbox" class="check__input" value="Кандалакша" v-model="town_list">
                                 <span class="check__box"></span>
                                 Кандалакша
                             </label>
@@ -181,7 +182,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Кола">
+                                <input type="checkbox" class="check__input" value="Кола" v-model="town_list">
                                 <span class="check__box"></span>
                                 Кола
                             </label>
@@ -190,7 +191,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Островной">
+                                <input type="checkbox" class="check__input" value="Островной" v-model="town_list">
                                 <span class="check__box"></span>
                                 Островной
                             </label>
@@ -199,7 +200,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Полярный">
+                                <input type="checkbox" class="check__input" value="Полярный" v-model="town_list">
                                 <span class="check__box"></span>
                                 Полярный
                             </label>
@@ -208,7 +209,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Североморск">
+                                <input type="checkbox" class="check__input" value="Североморск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Североморск
                             </label>
@@ -216,7 +217,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Снежногорск">
+                                <input type="checkbox" class="check__input" value="Снежногорск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Снежногорск
                             </label>
@@ -224,7 +225,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Заполярный">
+                                <input type="checkbox" class="check__input" value="Заполярный" v-model="town_list">
                                 <span class="check__box"></span>
                                 Заполярный
                             </label>
@@ -233,7 +234,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Ковдор">
+                                <input type="checkbox" class="check__input" value="Ковдор" v-model="town_list">
                                 <span class="check__box"></span>
                                 Ковдор
                             </label>
@@ -267,7 +268,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <input type="checkbox" class="check__input" value="Выбрать все" v-model="county_list">
                                 <span class="check__box"></span>
                                 Выбрать все
                             </label>
@@ -275,7 +276,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Первомайский">
+                                <input type="checkbox" class="check__input" value="Первомайский" v-model="county_list">
                                 <span class="check__box"></span>
                                 Первомайский
                             </label>
@@ -283,7 +284,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Октябрьский">
+                                <input type="checkbox" class="check__input" value="Октябрьский" v-model="county_list">
                                 <span class="check__box"></span>
                                 Октябрьский
                             </label>
@@ -291,7 +292,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Ленинский">
+                                <input type="checkbox" class="check__input" value="Ленинский" v-model="county_list">
                                 <span class="check__box"></span>
                                 Ленинский 
                             </label>
@@ -323,14 +324,14 @@ function format_date(date) {
                     <div class='varinats_second' v-show="show_type" >
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <input type="checkbox" class="check__input" value="Выбрать все" v-model="type_list">
                                 <span class="check__box"></span>
                                 Выбрать все
                             </label>
                         </div>
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Концерт">
+                                <input type="checkbox" class="check__input" value="Концерт" v-model="type_list">
                                 <span class="check__box"></span>
                                 Концерт
                             </label>
@@ -339,7 +340,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Фестиваль">
+                                <input type="checkbox" class="check__input" value="Фестиваль" v-model="type_list">
                                 <span class="check__box"></span>
                                 Фестиваль
                             </label>
@@ -348,7 +349,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Развлечение">
+                                <input type="checkbox" class="check__input" value="Развлечение" v-model="type_list">
                                 <span class="check__box"></span>
                                 Развлечение
                             </label>
@@ -356,7 +357,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Тренинг">
+                                <input type="checkbox" class="check__input" value="Тренинг" v-model="type_list">
                                 <span class="check__box"></span>
                                 Тренинг
                             </label>
@@ -365,7 +366,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выставка">
+                                <input type="checkbox" class="check__input" value="Выставка" v-model="type_list">
                                 <span class="check__box"></span>
                                 Выставка
                             </label>
@@ -373,7 +374,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Квест">
+                                <input type="checkbox" class="check__input" value="Квест" v-model="type_list">
                                 <span class="check__box"></span>
                                 Квест
                             </label>
@@ -381,7 +382,7 @@ function format_date(date) {
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Другое">
+                                <input type="checkbox" class="check__input" value="Другое" v-model="type_list">
                                 <span class="check__box"></span>
                                 Другое
                             </label>
@@ -392,8 +393,12 @@ function format_date(date) {
             
             </div>
             
-
         </div>
+        <button class="accept_filter" @click="show_events">
+            <div class="accept-name"> 
+                ПРИМЕНИТЬ ФИЛЬТРЫ
+            </div>
+        </button>
         <div class ='row-results'>
             <div class="block" v-for="event in events" v-bind:key="event.id">
                 <img  class="img-event" v-show="event.name != 'Фестиваль водных видов спорта'" :key="event.id"
@@ -406,6 +411,8 @@ function format_date(date) {
                 </div>
             </div>
         </div>
+
+
 
     </div>
 
@@ -430,6 +437,30 @@ function format_date(date) {
 
 </template>
 
+<script>
+
+    export default{
+        data(){
+            return {
+                town_list: ["Все города"],
+                county_list: ["Выбрать все"],
+                type_list: ["Выбрать все"],
+            }
+        },
+
+        methods: {
+            show_events(){
+                let names = []
+
+                this.events.forEach(function(item){
+                    names.push(item.name)
+                })
+
+                alert(names)
+            }
+        }
+    }
+</script>
 
 
 <style scoped>
@@ -612,12 +643,13 @@ function format_date(date) {
 .block{
     display: flex;
     flex-direction: row;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     box-shadow:
         6px 6px 6px -1px #e9e9e9,
         -6px 6px 6px -1px #e9e9e9;
     margin-right: 100px;
+    
 
 }
 
@@ -644,6 +676,23 @@ function format_date(date) {
     text-align: center;
 }
 
+.row-results{
+    padding-top: 20px;
+}
 
+.accept_filter{
+    margin-top: 50px;
+    width: 570px;
+    height: 50px;
+    background-color: #02C0B8;
+    border: #02C0B8;
+    cursor: pointer;
+}
+
+.accept-name{
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 16px;
+}
 
 </style>
