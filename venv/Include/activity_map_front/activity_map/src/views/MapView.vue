@@ -394,7 +394,7 @@ function format_date(date) {
             </div>
             
         </div>
-        <button class="accept_filter" @click="show_events">
+        <button class="accept_filter" @click="show_events(this.town_list, this.filter_events)">
             <div class="accept-name"> 
                 ПРИМЕНИТЬ ФИЛЬТРЫ
             </div>
@@ -434,6 +434,14 @@ function format_date(date) {
 
     </div>
 
+    {{ this.events }}
+
+
+    <div>
+
+    </div>
+    <h1>да</h1>
+    {{ this.new_events }}
 
 </template>
 
@@ -445,18 +453,44 @@ function format_date(date) {
                 town_list: ["Все города"],
                 county_list: ["Выбрать все"],
                 type_list: ["Выбрать все"],
+                filter_events: [],
+                new_events: []
             }
         },
 
+        mounted(){
+            this.get_value_from_appolo()
+        },
+
         methods: {
-            show_events(){
-                let names = []
+            show_events(town_list, filter_events){
+                // let filter_events = []
+
+                // let filter_events = []
 
                 this.events.forEach(function(item){
-                    names.push(item.name)
+                    
+                    for (var i = 0; i <town_list.length; i++){
+                        if (town_list[i] == item.town){
+                            filter_events.push(item)
+                        }
+                    }
+
                 })
 
-                alert(names)
+
+            },
+
+            get_value_from_appolo(){
+                this.events.forEach(function(item){
+                   this.new_events.push(
+                    {
+                        id: item.id,
+                        name: item.name,
+                        street: item.street
+                    }
+                   ) 
+                })
             }
         }
     }

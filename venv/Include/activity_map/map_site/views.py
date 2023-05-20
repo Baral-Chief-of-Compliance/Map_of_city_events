@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import Event
+from .models import Event, EventImg
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import DateForm
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 # Create your views here.
 
 @staff_member_required
@@ -406,3 +407,37 @@ def statistics_interval(request, start_year, start_month, start_day, end_year, e
         "events": list_of_event
     }
     return render(request, 'map_site/statistics_interval.html', context)
+
+
+def all_events(request):
+    events = Event.objects.all()
+    imgs = EventImg.objects.all()
+
+    json_events = []
+
+
+    for event in events:
+        json_img = []
+
+        for img in imgs:
+            if event.id == img.events.id:
+                json_img.append(img.img.url)
+
+
+        json_events.append(
+            {
+                "id": event.id,
+                "name": event.name,
+                "dt_of_start": event.dt_of_start,
+                "town": event.town,
+                "street": event.street,
+                "house": event.house,
+                "frame": event.frame,
+                "url": event.url,
+                "county": event.county,
+                "category": event.category,
+                "img": json_img
+            }
+        )
+
+    return JsonResponse({'events': json_events})
