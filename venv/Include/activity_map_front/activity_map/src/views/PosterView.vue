@@ -1,54 +1,11 @@
-<script setup>
-import { useEventStore } from '../stores/EventStore'
-import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { computed } from '@vue/runtime-core';
-
-const ALL_EVENTS_QUERY = gql`
-  query{
-    allEvents {
-      id
-      name
-      dtOfStart
-      dtOfEnd
-      street
-      house
-      frame
-      description
-      url
-      organizers
-      latitude
-      longitude
-      town
-      eventimgSet{
-        img
-      }
-    }
-  }
-`;
-
-
-
-const { result } = useQuery(ALL_EVENTS_QUERY)
-const events = computed(() => result.value?.allEvents ?? [])
-
-function format_date(date) {
-  let arr = date.slice(0, 10).split('-')
-  let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
-
-  return new_date
-}
-
-</script>
-
 <template>
   <div class="content">
     <div class="block" v-for="event in events" v-bind:key="event.id">
-      <div class="inf">
+      <div class="inf" @click="eneter_page(event.id)">
         <div class="title"> {{ event.name }} </div>
-        <div class="date"> {{ format_date(event.dtOfStart) }}</div>
+        <div class="date"> {{ format_date(event.dt_of_start) }}</div>
       </div>
-      <img :key="event.id" :src="'http://127.0.0.1:8000/media/' + event.eventimgSet[0].img" />
+      <img :key="event.id" :src="'http://127.0.0.1:8000/' + event.img" />
     </div>
 
     <!-- <img v-for="event in events" :key="event.id" :src="'http://127.0.0.1:8000/media/'+event.eventimgSet[0].img" /> -->
@@ -58,15 +15,51 @@ function format_date(date) {
 
 </template>
 
+
+<script>
+import axios from 'axios'
+
+export default{
+  data(){
+    return{
+      events: []
+    }
+  },
+
+  methods: {
+    eneter_page(id){
+            this.$router.push({ name: 'events', params: {id: id}})
+    },
+    format_date(date) {
+      let arr = date.slice(0, 10).split('-')
+      let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
+
+      return new_date
+    },
+
+    get_events(){
+      axios.get("http://127.0.0.1:8000/all_events")
+        .then( response => (
+          this.events = response.data.events
+        )
+
+      )
+    }
+  },
+
+  mounted(){
+    this.get_events()
+  }
+}
+</script>
+
+
 <style scoped>
 .content {
   margin-top: 45px;
   margin-bottom: 45px;
-  margin-left: 100px;
-  /* margin-right: 100px; */
   display: flex;
   flex-direction: row;
-  overflow: hidden;
   flex-wrap: wrap;
 }
 

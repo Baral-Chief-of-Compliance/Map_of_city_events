@@ -11,5 +11,6 @@ urlpatterns = [
     path('statistics_date/<str:start_year>-<str:start_month>-<str:start_day>-<str:end_year>-<str:end_month>-<str:end_day>', views.statistics_interval),
     path('all_events/', views.all_events, name='all_events'),
     path('filter_events/', views.use_filter, name='filter_events'),
-    path('categories_events/',  views.categories_filter, name='categories_filter')
+    path('categories_events/',  views.categories_filter, name='categories_filter'),
+    path('all_events/<int:id>', views.inf_about_event, name='inf_about_event')
 ]

@@ -629,3 +629,41 @@ def categories_filter(request):
 
             print(filter_event)
             return JsonResponse({'events': filter_event})
+
+
+@csrf_exempt
+def inf_about_event(request, id):
+    events = Event.objects.all()
+    imgs = EventImg.objects.all()
+
+    json_img = []
+
+    for img in imgs:
+        if img.events.id == id:
+            json_img.append(img.img.url)
+
+
+    for event in events:
+        if event.id == id:
+            json_inf = {
+                "name": event.name,
+                "dt_of_start": event.dt_of_start,
+                "dt_of_end": event.dt_of_end,
+                "town": event.town,
+                "street": event.street,
+                "house": event.house,
+                "frame": event.frame,
+                "description": event.description,
+                "url": event.url,
+                "organizers": event.organizers,
+                "latitude": event.latitude,
+                "longitude": event.longitude,
+                "paid": event.paid,
+                "price": event.price,
+                "age_limit": event.age_limit,
+                "county": event.county,
+                "category": event.category,
+                "img": json_img
+            }
+
+    return JsonResponse(json_inf)

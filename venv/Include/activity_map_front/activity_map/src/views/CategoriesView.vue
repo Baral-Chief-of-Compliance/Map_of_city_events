@@ -432,11 +432,12 @@
         </div>
 
         <div class ='row-results'>
-            <div class="block" v-for="event in events" v-bind:key="event.id">
+            <div class="block" v-for="event in events" v-bind:key="event.id"
+            >
                 <img  class="img-event"  :key="event.id"
                 :src="'http://127.0.0.1:8000/' + event.img" />
 
-                <div class="info">
+                <div class="info" @click="eneter_page(event.id)">
                     <div class="title">{{ event.name }}</div>
                     <div class="date">{{ format_date(event.dt_of_start) }}</div>
                     <div class="adress">{{ event.street }} {{ event.house }} {{ event.frame }}</div>
@@ -482,6 +483,9 @@ export default{
     },
 
     methods:{
+        eneter_page(id){
+            this.$router.push({ name: 'events', params: {id: id}})
+        },
         format_date(date) {
                 let arr = date.slice(0, 10).split('-')
                 let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
@@ -684,7 +688,7 @@ export default{
         box-shadow:
             6px 6px 6px -1px #e9e9e9,
             -6px 6px 6px -1px #e9e9e9;
-        margin-right: 100px;
+        margin-right: 32%;
     
 
     }

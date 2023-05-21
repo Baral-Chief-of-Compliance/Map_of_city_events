@@ -6,7 +6,7 @@ import { computed, watchEffect} from '@vue/runtime-core';
 import Header from './components/Header.vue';
 import NavBar from './components/NavBar.vue';
 import  Footer from './components/Footer.vue';
-import { useEventStore } from './stores/EventStore';
+// import { useEventStore } from './stores/EventStore';
 
 
 // const eventStore = useEventStore()

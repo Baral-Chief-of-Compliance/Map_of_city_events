@@ -4,6 +4,7 @@ import CategoriesView from '../views/CategoriesView.vue'
 import MapView from '../views/MapView.vue'
 import ArchiveView from '../views/ArchiveView.vue'
 import PosterView from '../views/PosterView.vue'
+import EventInfo from '../views/EventInfo.vue'
 
 
 const router = createRouter({
@@ -53,6 +54,14 @@ const router = createRouter({
       component: ArchiveView,
       meta: {
         title: 'АРХИВ МЕРОПРИЯТИЙ'
+      }
+    },
+    {
+      path: '/events/:id',
+      name: 'events',
+      component: EventInfo,
+      meta:{
+        title: 'Иноформация о мероприятии'
       }
     }
   ]
