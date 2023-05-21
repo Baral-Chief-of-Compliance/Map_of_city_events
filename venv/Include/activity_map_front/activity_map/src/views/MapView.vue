@@ -1,57 +1,3 @@
-<script setup>
-import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { computed } from '@vue/runtime-core';
-import Map from '../components/Map.vue'
-import {ref} from 'vue'
-
-const ALL_EVENTS_QUERY = gql`
-  query{
-    allEvents {
-      id
-      name
-      dtOfStart
-      dtOfEnd
-      street
-      house
-      frame
-      description
-      url
-      organizers
-      latitude
-      longitude
-      town
-      paid
-      price
-      ageLimit
-      county
-      category
-      eventimgSet{
-        img
-      }
-    }
-  }
-`;
-
-
-
-const { result } = useQuery(ALL_EVENTS_QUERY)
-const events = computed(() => result.value?.allEvents ?? [])
-const show_city = ref(false)
-const show_county = ref(false)
-const show_type = ref(false)
-
-
-function format_date(date) {
-    let arr = date.slice(0, 10).split('-')
-    let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
-
-    return new_date
-}
-
-
-</script>
-    
 <template>
 
     <div  onmousedown="return true" class="content">
@@ -394,19 +340,19 @@ function format_date(date) {
             </div>
             
         </div>
-        <button class="accept_filter" @click="show_events(this.town_list, this.filter_events)">
+        <button class="accept_filter" @click="use_filter">
             <div class="accept-name"> 
                 ПРИМЕНИТЬ ФИЛЬТРЫ
             </div>
         </button>
         <div class ='row-results'>
             <div class="block" v-for="event in events" v-bind:key="event.id">
-                <img  class="img-event" v-show="event.name != 'Фестиваль водных видов спорта'" :key="event.id"
-                :src="'http://127.0.0.1:8000/media/' + event.eventimgSet[0].img" />
+                <img  class="img-event"  :key="event.id"
+                :src="'http://127.0.0.1:8000/' + event.img" />
 
-                <div v-if="event.name != 'Фестиваль водных видов спорта'" class="info">
+                <div class="info">
                     <div class="title">{{ event.name }}</div>
-                    <div class="date">{{ format_date(event.dtOfStart) }}</div>
+                    <div class="date">{{ format_date(event.dt_of_start) }}</div>
                     <div class="adress">{{ event.street }} {{ event.house }} {{ event.frame }}</div>
                 </div>
             </div>
@@ -416,7 +362,7 @@ function format_date(date) {
 
     </div>
 
-        <Map :events="events" />
+        <Map :events="this.events" />
 
 
 
@@ -434,63 +380,62 @@ function format_date(date) {
 
     </div>
 
-    {{ this.events }}
-
-
-    <div>
-
-    </div>
-    <h1>да</h1>
-    {{ this.new_events }}
 
 </template>
 
 <script>
+import Map from '../components/Map.vue'
+import axios from 'axios'
+
 
     export default{
+        components: {
+            Map
+        },
         data(){
             return {
                 town_list: ["Все города"],
                 county_list: ["Выбрать все"],
                 type_list: ["Выбрать все"],
-                filter_events: [],
-                new_events: []
+                events: [],
+
+                show_city: false,
+                show_county: false,
+                show_type: false
             }
         },
 
         mounted(){
-            this.get_value_from_appolo()
+            this.get_events()
         },
 
         methods: {
-            show_events(town_list, filter_events){
-                // let filter_events = []
+            format_date(date) {
+                let arr = date.slice(0, 10).split('-')
+                let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
 
-                // let filter_events = []
-
-                this.events.forEach(function(item){
-                    
-                    for (var i = 0; i <town_list.length; i++){
-                        if (town_list[i] == item.town){
-                            filter_events.push(item)
-                        }
-                    }
-
-                })
-
-
+                return new_date
             },
 
-            get_value_from_appolo(){
-                this.events.forEach(function(item){
-                   this.new_events.push(
-                    {
-                        id: item.id,
-                        name: item.name,
-                        street: item.street
-                    }
-                   ) 
-                })
+            get_events(){
+                axios.get("http://127.0.0.1:8000/all_events")
+                .then( response => (
+                    this.events = response.data.events
+                )
+
+                )
+            },
+
+            use_filter(){
+                axios.post("http://127.0.0.1:8000/filter_events/", {
+                    town_list: this.town_list,
+                    county_list: this.county_list,
+                    type_list: this.type_list
+                }).then(
+                    response => (
+                        this.events = response.data.events
+                    )
+                )
             }
         }
     }

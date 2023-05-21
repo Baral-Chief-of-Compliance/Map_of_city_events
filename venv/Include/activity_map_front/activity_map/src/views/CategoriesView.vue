@@ -1,54 +1,3 @@
-<script setup>
-import {ref} from 'vue'
-import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { computed } from '@vue/runtime-core';
-
-const ALL_EVENTS_QUERY = gql`
-  query{
-    allEvents {
-      id
-      name
-      dtOfStart
-      dtOfEnd
-      street
-      house
-      frame
-      description
-      url
-      organizers
-      latitude
-      longitude
-      town
-      paid
-      price
-      ageLimit
-      county
-      category
-      eventimgSet{
-        img
-      }
-    }
-  }
-`;
-const { result } = useQuery(ALL_EVENTS_QUERY)
-const events = computed(() => result.value?.allEvents ?? [])
-
-function format_date(date) {
-    let arr = date.slice(0, 10).split('-')
-    let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
-
-    return new_date
-}
-
-
-const show_city = ref(false)
-const show_county = ref(false)
-const show_type = ref(false)
-const show_age = ref(false)
-const show_date = ref(false)
-</script>
-
 <template>
     <div class="content">
         <div class="row-filter">
@@ -73,14 +22,14 @@ const show_date = ref(false)
                     <div class='varinats' v-show="show_city" >
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Все города">
+                                <input type="checkbox" class="check__input" value="Все города" v-model="town_list">
                                 <span class="check__box"></span>
                                 Все города
                             </label>
                         </div>
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Мурманск">
+                                <input type="checkbox" class="check__input" value="Мурманск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Мурманск
                             </label>
@@ -89,7 +38,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Мончегорск">
+                                <input type="checkbox" class="check__input" value="Мончегорск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Мончегорск
                             </label>
@@ -98,7 +47,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Полярные Зори">
+                                <input type="checkbox" class="check__input" value="Полярные Зори" v-model="town_list">
                                 <span class="check__box"></span>
                                 Полярные Зори
                             </label>
@@ -107,7 +56,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Оленегорск">
+                                <input type="checkbox" class="check__input" value="Оленегорск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Оленегорск
                             </label>
@@ -116,7 +65,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Кировск">
+                                <input type="checkbox" class="check__input" value="Кировск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Кировск
                             </label>
@@ -125,7 +74,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Апатиты">
+                                <input type="checkbox" class="check__input" value="Апатиты" v-model="town_list">
                                 <span class="check__box"></span>
                                 Апатиты
                             </label>
@@ -134,7 +83,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Гаджиево">
+                                <input type="checkbox" class="check__input" value="Гаджиево" v-model="town_list">
                                 <span class="check__box"></span>
                                 Гаджиево
                             </label>
@@ -143,7 +92,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Заозёрск">
+                                <input type="checkbox" class="check__input" value="Заозёрск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Заозёрск
                             </label>
@@ -152,7 +101,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Кандалакша">
+                                <input type="checkbox" class="check__input" value="Кандалакша" v-model="town_list">
                                 <span class="check__box"></span>
                                 Кандалакша
                             </label>
@@ -161,7 +110,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Кола">
+                                <input type="checkbox" class="check__input" value="Кола" v-model="town_list">
                                 <span class="check__box"></span>
                                 Кола
                             </label>
@@ -170,7 +119,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Островной">
+                                <input type="checkbox" class="check__input" value="Островной" v-model="town_list">
                                 <span class="check__box"></span>
                                 Островной
                             </label>
@@ -179,7 +128,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Полярный">
+                                <input type="checkbox" class="check__input" value="Полярный" v-model="town_list">
                                 <span class="check__box"></span>
                                 Полярный
                             </label>
@@ -188,7 +137,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Североморск">
+                                <input type="checkbox" class="check__input" value="Североморск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Североморск
                             </label>
@@ -196,7 +145,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Снежногорск">
+                                <input type="checkbox" class="check__input" value="Снежногорск" v-model="town_list">
                                 <span class="check__box"></span>
                                 Снежногорск
                             </label>
@@ -204,7 +153,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Заполярный">
+                                <input type="checkbox" class="check__input" value="Заполярный" v-model="town_list">
                                 <span class="check__box"></span>
                                 Заполярный
                             </label>
@@ -213,7 +162,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Ковдор">
+                                <input type="checkbox" class="check__input" value="Ковдор" v-model="town_list">
                                 <span class="check__box"></span>
                                 Ковдор
                             </label>
@@ -246,7 +195,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <input type="checkbox" class="check__input" value="Выбрать все" v-model="county_list">
                                 <span class="check__box"></span>
                                 Выбрать все
                             </label>
@@ -254,7 +203,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Первомайский">
+                                <input type="checkbox" class="check__input" value="Первомайский" v-model="county_list"> 
                                 <span class="check__box"></span>
                                 Первомайский
                             </label>
@@ -262,7 +211,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Октябрьский">
+                                <input type="checkbox" class="check__input" value="Октябрьский" v-model="county_list">
                                 <span class="check__box"></span>
                                 Октябрьский
                             </label>
@@ -270,7 +219,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Ленинский">
+                                <input type="checkbox" class="check__input" value="Ленинский" v-model="county_list">
                                 <span class="check__box"></span>
                                 Ленинский 
                             </label>
@@ -302,14 +251,14 @@ const show_date = ref(false)
                     <div class='varinats_second' v-show="show_type" >
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <input type="checkbox" class="check__input" value="Выбрать все" v-model="type_list">
                                 <span class="check__box"></span>
                                 Выбрать все
                             </label>
                         </div>
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Концерт">
+                                <input type="checkbox" class="check__input" value="Концерт" v-model="type_list">
                                 <span class="check__box"></span>
                                 Концерт
                             </label>
@@ -318,7 +267,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Фестиваль">
+                                <input type="checkbox" class="check__input" value="Фестиваль" v-model="type_list">
                                 <span class="check__box"></span>
                                 Фестиваль
                             </label>
@@ -327,7 +276,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Развлечение">
+                                <input type="checkbox" class="check__input" value="Развлечение" v-model="type_list">
                                 <span class="check__box"></span>
                                 Развлечение
                             </label>
@@ -335,7 +284,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Тренинг">
+                                <input type="checkbox" class="check__input" value="Тренинг" v-model="type_list">
                                 <span class="check__box"></span>
                                 Тренинг
                             </label>
@@ -344,7 +293,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выставка">
+                                <input type="checkbox" class="check__input" value="Выставка" v-model="type_list">
                                 <span class="check__box"></span>
                                 Выставка
                             </label>
@@ -352,7 +301,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Квест">
+                                <input type="checkbox" class="check__input" value="Квест" v-model="type_list">
                                 <span class="check__box"></span>
                                 Квест
                             </label>
@@ -360,7 +309,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Другое">
+                                <input type="checkbox" class="check__input" value="Другое" v-model="type_list">
                                 <span class="check__box"></span>
                                 Другое
                             </label>
@@ -392,14 +341,14 @@ const show_date = ref(false)
                     <div class='varinats_second' v-show="show_age" >
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выбрать все">
+                                <input type="checkbox" class="check__input" value="Выбрать все" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 Выбрать все
                             </label>
                         </div>
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Концерт">
+                                <input type="checkbox" class="check__input" value="0+" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 0+
                             </label>
@@ -408,7 +357,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Фестиваль">
+                                <input type="checkbox" class="check__input" value="6+" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 6+
                             </label>
@@ -417,7 +366,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Развлечение">
+                                <input type="checkbox" class="check__input" value="12+" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 12+
                             </label>
@@ -425,7 +374,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Тренинг">
+                                <input type="checkbox" class="check__input" value="14+" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 14+
                             </label>
@@ -434,7 +383,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Выставка">
+                                <input type="checkbox" class="check__input" value="16+" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 16+
                             </label>
@@ -442,7 +391,7 @@ const show_date = ref(false)
 
                         <div>
                             <label class="check">
-                                <input type="checkbox" class="check__input" value="Квест">
+                                <input type="checkbox" class="check__input" value="18+" v-model="age_limit_list">
                                 <span class="check__box"></span>
                                 18+
                             </label>
@@ -474,11 +423,24 @@ const show_date = ref(false)
         </div>
 
         <div class="row-button">
-            <div class="chanel">
+            <div class="chanel" @click="chanel">
                 СБРОСИТЬ
             </div>
-            <div class="accept">
+            <div class="accept" @click="use_filter">
                 ПРИМЕНИТЬ
+            </div>
+        </div>
+
+        <div class ='row-results'>
+            <div class="block" v-for="event in events" v-bind:key="event.id">
+                <img  class="img-event"  :key="event.id"
+                :src="'http://127.0.0.1:8000/' + event.img" />
+
+                <div class="info">
+                    <div class="title">{{ event.name }}</div>
+                    <div class="date">{{ format_date(event.dt_of_start) }}</div>
+                    <div class="adress">{{ event.street }} {{ event.house }} {{ event.frame }}</div>
+                </div>
             </div>
         </div>
 
@@ -496,6 +458,60 @@ const show_date = ref(false)
         </div> -->
     </div>
 </template>
+
+
+<script>
+import axios from 'axios'
+
+
+export default{
+    data(){
+        return{
+            town_list: ["Все города"],
+            county_list: ["Выбрать все"],
+            type_list: ["Выбрать все"],
+            age_limit_list: ["Выбрать все"],
+
+            show_city: false,
+            show_county: false,
+            show_type: false,
+            show_age: false,
+            show_date: false,
+            events: []
+        }
+    },
+
+    methods:{
+        format_date(date) {
+                let arr = date.slice(0, 10).split('-')
+                let new_date = `${arr[2]}.${arr[1]}.${arr[0]}`
+
+                return new_date
+            },
+        chanel(){
+            this.town_list = ["Все города"],
+            this.county_list = ["Выбрать все"],
+            this.type_list = ["Выбрать все"],
+            this.age_limit_list = ["Выбрать все"]
+
+        },
+
+        use_filter(){
+                axios.post("http://127.0.0.1:8000/filter_events/", {
+                    town_list: this.town_list,
+                    county_list: this.county_list,
+                    type_list: this.type_list,
+                    age_limit_list: this.age_limit_list
+                }).then(
+                    response => (
+                        this.events = response.data.events
+                    )
+                )
+            }
+    }
+}
+</script>
+
 
 <style scoped>
     .content{
@@ -646,5 +662,62 @@ const show_date = ref(false)
         padding-bottom: 5px;
         text-align: center;
     }
+
+    .varinats{
+        margin-top: 5px;
+    }
+
+    .varinats_second{
+        margin-top: 5px;
+        margin-left: 22px;
+    }
+
+    .row-results{
+        padding-top: 20px;
+    }
+
+    .block{
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        box-shadow:
+            6px 6px 6px -1px #e9e9e9,
+            -6px 6px 6px -1px #e9e9e9;
+        margin-right: 100px;
+    
+
+    }
+
+    .img-event{
+        width: 300px;
+        height: 150px;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+
+    .info{
+        padding-top: 20px;
+        padding-left: 20px;
+    }
+
+    .title{
+        font-weight: bold;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+    .date{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+    .adress{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
 
 </style>

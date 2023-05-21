@@ -4,6 +4,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .forms import DateForm
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 @staff_member_required
@@ -436,8 +438,194 @@ def all_events(request):
                 "url": event.url,
                 "county": event.county,
                 "category": event.category,
-                "img": json_img
+                "img": json_img,
+                "latitude": event.latitude,
+                "longitude": event.longitude
             }
         )
 
     return JsonResponse({'events': json_events})
+
+
+@csrf_exempt
+def use_filter(request):
+    if request.method == 'GET':
+        return JsonResponse({'foo': "bar"})
+
+    elif request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        town_list = body["town_list"]
+        county_list = body["county_list"]
+        type_list = body["type_list"]
+
+        events = Event.objects.all()
+
+        filter_event = []
+        list_events = []
+
+        def get_image(event):
+            imgs = EventImg.objects.all()
+            json_img = []
+
+            for img in imgs:
+                if event.id == img.events.id:
+                    json_img.append(img.img.url)
+            return json_img
+
+        def create_json_object(list_ev, event):
+            list_ev.append(
+                {
+                    "id": event.id,
+                    "name": event.name,
+                    "dt_of_start": event.dt_of_start,
+                    "town": event.town,
+                    "street": event.street,
+                    "house": event.house,
+                    "frame": event.frame,
+                    "url": event.url,
+                    "county": event.county,
+                    "category": event.category,
+                    "img": get_image(event),
+                    "latitude": event.latitude,
+                    "longitude": event.longitude
+                }
+            )
+
+            return list_ev
+
+        def check_element(list_ev, event):
+            id_ev = event.id
+            for ev in list_ev:
+                if ev.id == id_ev:
+                    return False
+                else:
+                    return True
+
+        if ("Все города" in town_list) or ("Выбрать все" in county_list) or ("Выбрать все" in type_list):
+            for event in events:
+                filter_event = create_json_object(filter_event, event)
+
+            return JsonResponse({'events': filter_event})
+
+        else:
+
+            for event in events:
+
+                for town in town_list:
+                    if town == event.town:
+                        filter_event = create_json_object(filter_event, event)
+                        list_events.append(event)
+
+                for county in county_list:
+                    if county == event.county:
+                        if event in list_events:
+                            pass
+                        else:
+                            filter_event = create_json_object(filter_event, event)
+                            list_events.append(event)
+
+                for type_ev in type_list:
+                    if type_ev == event.category:
+                        if event in list_events:
+                            pass
+                        else:
+                            filter_event = create_json_object(filter_event, event)
+                            list_events.append(event)
+
+            return JsonResponse({'events': filter_event})
+
+
+@csrf_exempt
+def categories_filter(request):
+
+    if request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        town_list = body["town_list"]
+        county_list = body["county_list"]
+        type_list = body["type_list"]
+        age_limit_list = body["age_limit_list"]
+
+        events = Event.objects.all()
+
+        filter_event = []
+        list_events = []
+
+        def get_image(event):
+            imgs = EventImg.objects.all()
+            json_img = []
+
+            for img in imgs:
+                if event.id == img.events.id:
+                    json_img.append(img.img.url)
+            return json_img
+
+        def create_json_object(list_ev, event):
+            list_ev.append(
+                {
+                    "id": event.id,
+                    "name": event.name,
+                    "dt_of_start": event.dt_of_start,
+                    "town": event.town,
+                    "street": event.street,
+                    "house": event.house,
+                    "frame": event.frame,
+                    "url": event.url,
+                    "county": event.county,
+                    "category": event.category,
+                    "img": get_image(event),
+                    "latitude": event.latitude,
+                    "longitude": event.longitude
+                }
+            )
+
+            return list_ev
+
+        def check_element(list_ev, event):
+            id_ev = event.id
+            for ev in list_ev:
+                if ev.id == id_ev:
+                    return False
+                else:
+                    return True
+
+        if ("Все города" in town_list) or ("Выбрать все" in county_list) or ("Выбрать все" in type_list) or ("Выбрать все" in age_limit_list):
+            for event in events:
+                filter_event = create_json_object(filter_event, event)
+
+            return JsonResponse({'events': filter_event})
+
+        else:
+
+            for event in events:
+
+                for town in town_list:
+                    if town == event.town:
+                        filter_event = create_json_object(filter_event, event)
+                        list_events.append(event)
+
+                for county in county_list:
+                    if county == event.county:
+                        if event in list_events:
+                            pass
+                        else:
+                            filter_event = create_json_object(filter_event, event)
+                            list_events.append(event)
+
+                for type_ev in type_list:
+                    if type_ev == event.category:
+                        if event in list_events:
+                            pass
+                        else:
+                            filter_event = create_json_object(filter_event, event)
+                            list_events.append(event)
+
+                for age in age_limit_list:
+                    if age == event.age_limit:
+                        if event in list_events:
+                            pass
+                        else:
+                            filter_event = create_json_object(filter_event, event)
+                            list_events.append(event)
+
+            print(filter_event)
+            return JsonResponse({'events': filter_event})

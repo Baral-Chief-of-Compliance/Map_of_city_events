@@ -9,41 +9,41 @@ import  Footer from './components/Footer.vue';
 import { useEventStore } from './stores/EventStore';
 
 
-const eventStore = useEventStore()
+// const eventStore = useEventStore()
 
-const ALL_EVENTS_QUERY = gql`
-  query{
-    allEvents {
-      id
-      name
-      dtOfStart
-      dtOfEnd
-      street
-      house
-      frame
-      description
-      url
-      organizers
-      latitude
-      longitude
-      town
-      eventimgSet{
-        img
-      }
-    }
-  }
-`;
+// const ALL_EVENTS_QUERY = gql`
+//   query{
+//     allEvents {
+//       id
+//       name
+//       dtOfStart
+//       dtOfEnd
+//       street
+//       house
+//       frame
+//       description
+//       url
+//       organizers
+//       latitude
+//       longitude
+//       town
+//       eventimgSet{
+//         img
+//       }
+//     }
+//   }
+// `;
 
-const { result } = useQuery(ALL_EVENTS_QUERY)
-const events = computed(() => result.value?.allEvents ?? [])
+// const { result } = useQuery(ALL_EVENTS_QUERY)
+// const events = computed(() => result.value?.allEvents ?? [])
 
 
-eventStore.addEvent(events)
+// eventStore.addEvent(events)
 
-watchEffect(() => {
-    console.log(events.value)
-  }
-)
+// watchEffect(() => {
+//     console.log(events.value)
+//   }
+// )
 
 
 </script>

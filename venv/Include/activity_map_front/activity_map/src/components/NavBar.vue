@@ -23,7 +23,6 @@
 
     .links{
         margin-left: 500px;
-        margin-right: 500px;
         font-size: 20px;
         font-weight: medium;
         padding-top: 33px;
